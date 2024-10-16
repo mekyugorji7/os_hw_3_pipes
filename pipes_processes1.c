@@ -44,16 +44,15 @@ int main()
     // Parent process 
     else if (p > 0) 
     { 
-  
         close(fd1[0]);  // Close reading end of pipes 
         close(fd2[1]);
-  
+
         // Write input string and close writing end of first 
         // pipe. 
         write(fd1[1], input_str, strlen(input_str)+1); 
       
         // Wait for child to send a string 
-        wait(NULL); 
+        wait(NULL);
 
         //NEW: Receive second input string from child process
         char second_input[100];
@@ -66,7 +65,7 @@ int main()
         // Print the final result
         printf("Output: %s\n", input_str); 
 
-        close(fd2[0]); // Close writing end of pipes 
+        close(fd2[0]); // Close writing end of pipe 1 and reading end of pipe 2 
         close(fd1[1]); 
     } 
   
